@@ -1,4 +1,6 @@
-**Dell Latitude 7490 OpenCore Configuration  Best Experienced With: Mac OS Sonoma or Mac OS Ventura**
+**Dell Latitude 7490 OpenCore Configuration**  
+
+**Best Experienced With: Mac OS Sonoma** or **Mac OS Ventura**
 
 <img width="468" height="285" alt="image" src="https://github.com/user-attachments/assets/f380c944-c267-41e8-9b89-5bfa05c50871" />
 
