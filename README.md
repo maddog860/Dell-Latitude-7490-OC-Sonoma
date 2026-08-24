@@ -33,25 +33,13 @@ Download Here: https://github.com/dortania/Opencore-Legacy-Patcher
 My particular Latitude was failing to fall asleep because the cursor would keep moving slightly, as soon as the lid was closed, thus preventing sleep from occurring. The modified AlpsHID.kext specifically disables cursor input once lid is closed, and resumes functioning when lid is opened again. Using this kext there has been no issue with falling asleep. Previously it was recommended to disable USB PowerShare and USB Wake Support to overcome this specific issue, and it may not be needed anymore if your trackpad can use this kext.
 
 **Confirmed Working:**
-USB Ports (USBA and USBC)
-HDMI
-Sound
-Brightness and Volume adjustment keys
-Sleep
-Airplay
-Trackpoint (Pointing Stick)
-Filevault
-Ethernet
-Low Power Mode
-USB PowerShare
-Graphics Acceleration
-Internal Microphone
-Internal Webcam
-MicroSD Card Reader
-NSS:2 fix for BCM94360NG
+
+<img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/1bdcb4d7-6909-4622-91b9-1fa4292a98e4" />
+
+**Not Working 100%**
+
+<img width="468" height="70" alt="image" src="https://github.com/user-attachments/assets/82242a85-38a8-4b80-a3c9-d1f6ea3cde06" />
 
 **Not Tested:**
-Airdrop
-Messages
-Smart Card Reader
-Fingerprint Scanner
+
+<img width="468" height="42" alt="image" src="https://github.com/user-attachments/assets/8866239f-834b-432e-bfed-81735ed1c450" />
