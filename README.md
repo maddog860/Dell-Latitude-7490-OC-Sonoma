@@ -1,6 +1,7 @@
 **Dell Latitude 7490 OpenCore Configuration  Best Experienced With: Mac OS Sonoma or Mac OS Ventura**
 
-<img width="468" height="285" alt="latitude7490somona" src="https://github.com/user-attachments/assets/e9e0fbc5-bc95-4d6c-967e-f78f8765f33d" />
+<img width="468" height="285" alt="image" src="https://github.com/user-attachments/assets/f380c944-c267-41e8-9b89-5bfa05c50871" />
+
 
 First and foremost, this project wouldn’t be here if it wasn’t for this github project:
 
