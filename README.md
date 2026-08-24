@@ -16,6 +16,19 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args: -brcmfxdbg -liludbgall
  
 <img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/701787bf-ec23-4310-8746-0eb4c663da72" />
 
+
+**Confirmed Working:**
+
+<img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/1bdcb4d7-6909-4622-91b9-1fa4292a98e4" />
+
+**Not Working 100%**
+
+<img width="468" height="70" alt="image" src="https://github.com/user-attachments/assets/82242a85-38a8-4b80-a3c9-d1f6ea3cde06" />
+
+**Not Tested:**
+
+<img width="468" height="42" alt="image" src="https://github.com/user-attachments/assets/8866239f-834b-432e-bfed-81735ed1c450" />
+
 **NSS:2 Fix**
 This is probably the most meaningful contribution. The BCM94360NG problem was that on a cold macOS boot, the Broadcom driver applied a single-transmit-chain constraint, leaving the card at NSS:1 instead of NSS:2.
 
@@ -31,15 +44,3 @@ Download Here: https://github.com/dortania/Opencore-Legacy-Patcher
 
 **Sleep fix for AlpsHID.kext**
 My particular Latitude was failing to fall asleep because the cursor would keep moving slightly, as soon as the lid was closed, thus preventing sleep from occurring. The modified AlpsHID.kext specifically disables cursor input once lid is closed, and resumes functioning when lid is opened again. Using this kext there has been no issue with falling asleep. Previously it was recommended to disable USB PowerShare and USB Wake Support to overcome this specific issue, and it may not be needed anymore if your trackpad can use this kext.
-
-**Confirmed Working:**
-
-<img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/1bdcb4d7-6909-4622-91b9-1fa4292a98e4" />
-
-**Not Working 100%**
-
-<img width="468" height="70" alt="image" src="https://github.com/user-attachments/assets/82242a85-38a8-4b80-a3c9-d1f6ea3cde06" />
-
-**Not Tested:**
-
-<img width="468" height="42" alt="image" src="https://github.com/user-attachments/assets/8866239f-834b-432e-bfed-81735ed1c450" />
