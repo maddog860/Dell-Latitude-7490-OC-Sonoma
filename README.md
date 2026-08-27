@@ -1,4 +1,4 @@
-**Dell Latitude 7490 OpenCore Configuration**  
+**Dell Latitude 7490 OpenCore Configuration**
 
 **Best Experienced With: Mac OS Sonoma** or **Mac OS Ventura**
 
@@ -11,25 +11,44 @@ https://github.com/CloverLeafBG/Dell-Latitude-7490-OC-Hackintosh
 
 This project builds on the previous author’s work, and has been adapted to work with Mac OS Sonoma. AI helped quite a bit, and this contains AI generated code. Wanted to be upfront about it. This has only been tested with one machine, your's might behave differently.
 
-The following boot arguments are all that is needed for me, your experience may vary: 
+The following boot arguments are all that is needed for me, your experience may vary:
 alcid=13 watchdog=0 brcmfx-delay=300
-To use DEBUG AirportBrcmFixup.kext add these boot-args: -brcmfxdbg -liludbgall
+To use DEBUG AirportBrcmFixup.kext add these boot-args:
 
- **System Configuration**
- 
+-brcmfxdbg -liludbgall
+
+**System Configuration**
+
 <img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/701787bf-ec23-4310-8746-0eb4c663da72" />
 
 **Confirmed Working:**
 
-<img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/1bdcb4d7-6909-4622-91b9-1fa4292a98e4" />
+- USB ports (USBA and USBC)
+- HDMI
+- Sound
+- Brightness and Volume adjust keys function properly
+- Sleep works
+- Airplay (extensively tested)
+- Trackpoint AKA “Pointing Stick”
+- Filevault
+- Ethernet
+- Low Power Mode
+- USB PowerShare (Option in bios may be turned on without affecting sleep)
+- Graphics Acceleration
+- Internal Microphone
+- Internal Webcam
+- NSS:2 for BCM94360NG
 
 **Not Working 100%**
 
-<img width="468" height="70" alt="image" src="https://github.com/user-attachments/assets/82242a85-38a8-4b80-a3c9-d1f6ea3cde06" />
+SD card reader – C State is broken in my case. Must Disable SD card reader so CPU can hit C states C6, C7, and C8. This is a known problem that is being worked on. SD card reader works otherwise.
 
 **Not Tested:**
 
-<img width="468" height="42" alt="image" src="https://github.com/user-attachments/assets/8866239f-834b-432e-bfed-81735ed1c450" />
+- Airdrop
+- Messages compatibility
+- Smart Card Reader
+- Fingerprint sensor
 
 ## Dell Latitude 7490 BIOS Settings
 
@@ -105,15 +124,19 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args: -brcmfxdbg -liludbgall
 - Virtualization: Enabled
 - VT for Direct I/O: Enabled
 - Trusted Execution: Disabled
-  
+
 
 **NSS:2 Fix**
 This is probably the most meaningful contribution. The BCM94360NG problem was that on a cold macOS boot, the Broadcom driver applied a single-transmit-chain constraint, leaving the card at NSS:1 instead of NSS:2.
 
 The fix was found by comparing the good NSS:2 state with the bad NSS:1 state (good state initiated by booting into Windows first), then instrumenting and reverse-engineering Apple’s Broadcom driver. That led to the internal function _wlc_stf_txchain_set. Then discovered that it takes four arguments, and logging showed the bad path was specifically setting:  constraint/reason 2 to a chain value of 0x1, whereas the working state used 0x3.
 
-The custom AirportBrcmFixup patch hooks that function and changes only that specific bad case: 
-reason == 2 && txchain == 1 → change the chain mask to 0x3  Then it lets Apple’s original function continue normally. So the fix doesn't artificially report NSS:2 or generally force Wi-Fi settings. It prevents Apple’s driver from incorrectly disabling the second transmit chain in that one situation. 
+The custom AirportBrcmFixup patch hooks that function and changes only that specific bad case:
+reason == 2 && txchain == 1 → change the chain mask to 0x3
+
+Then it lets Apple’s original function continue normally.
+
+So the fix doesn't artificially report NSS:2 or generally force Wi-Fi settings. It prevents Apple’s driver from incorrectly disabling the second transmit chain in that one situation.
 
 The result is that the BCM94360NG comes up with both TX chains enabled and maintains NSS:2 without needing the Windows-boot workaround.
 
