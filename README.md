@@ -1,4 +1,4 @@
-**Dell Latitude 7490 OpenCore Configuration**
+## Dell Latitude 7490 OpenCore Configuration
 
 **Best Experienced With: Mac OS Sonoma** or **Mac OS Ventura**
 
