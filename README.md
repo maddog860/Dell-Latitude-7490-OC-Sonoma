@@ -19,7 +19,6 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args: -brcmfxdbg -liludbgall
  
 <img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/701787bf-ec23-4310-8746-0eb4c663da72" />
 
-
 **Confirmed Working:**
 
 <img width="468" height="236" alt="image" src="https://github.com/user-attachments/assets/1bdcb4d7-6909-4622-91b9-1fa4292a98e4" />
@@ -31,6 +30,82 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args: -brcmfxdbg -liludbgall
 **Not Tested:**
 
 <img width="468" height="42" alt="image" src="https://github.com/user-attachments/assets/8866239f-834b-432e-bfed-81735ed1c450" />
+
+## Dell Latitude 7490 BIOS Settings
+
+### General
+
+#### Boot Sequence
+
+- Boot mode: UEFI
+- OpenCore: First
+- USB Storage Device: Enabled; select through the F12 boot menu when needed
+
+#### Advanced Boot Options
+
+- Enable Legacy Option ROMs: Disabled
+- Attempt Legacy Boot: Disabled
+
+#### UEFI Boot Path Security
+
+- UEFI Boot Path Security: Always, Except Internal HDD
+
+### System Configuration
+
+- Integrated NIC: Enabled
+- SATA Operation: AHCI
+- Drives: Enable all installed drives
+- SMART Reporting: Enabled
+
+#### USB Configuration
+
+- Enable USB Boot Support
+- Enable External USB Port
+
+#### Thunderbolt Adapter Configuration
+
+- Enable Thunderbolt Technology Support: Enabled
+- Security Level: User Authorization
+
+#### Additional Settings
+
+- USB PowerShare: Optional
+- Audio: Enable all options
+- Unobtrusive Mode: Disabled
+
+### Security
+
+- UEFI Capsule Firmware Updates: Enabled
+- TPM 2.0 Security: Enabled
+- TPM On: Enabled
+- Secure Boot: Disabled
+- Secure Boot Mode: Deployed Mode
+- Expert Key Management: Disabled
+- Intel Software Guard Extensions (SGX): Software Controlled
+
+### Performance
+
+- Multi-Core Support: All cores enabled
+- Intel SpeedStep: Enabled
+- C-States Control: Enabled
+- Intel Turbo Boost: Enabled
+- Hyper-Threading Control: Enabled
+
+### Power Management
+
+- USB Wake Support: Enabled
+- Block Sleep: Disabled
+
+### POST Behavior
+
+- Fastboot: Minimal
+
+### Virtualization Support
+
+- Virtualization: Enabled
+- VT for Direct I/O: Enabled
+- Trusted Execution: Disabled
+  
 
 **NSS:2 Fix**
 This is probably the most meaningful contribution. The BCM94360NG problem was that on a cold macOS boot, the Broadcom driver applied a single-transmit-chain constraint, leaving the card at NSS:1 instead of NSS:2.
