@@ -11,8 +11,11 @@ https://github.com/CloverLeafBG/Dell-Latitude-7490-OC-Hackintosh
 
 This project builds on the previous author’s work, and has been adapted to work with Mac OS Sonoma. AI helped quite a bit, and this contains AI generated code. Wanted to be upfront about it. This has only been tested with one machine, your's might behave differently.
 
+This latest release allows the seamless dual (or triple) boot setup for Mac OS, easily switch from Ventura, Somona, or Sequoia at boot without needing to change config.plist settings.
+
 The following boot arguments are all that is needed for me, your experience may vary:
-alcid=13 watchdog=0 brcmfx-delay=300
+alcid=13 watchdog=0 brcmfx-delay=300 brcmfx-aspm=255
+
 To use DEBUG AirportBrcmFixup.kext add these boot-args:
 
 -brcmfxdbg -liludbgall
@@ -27,8 +30,8 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args:
 - HDMI
 - Sound
 - Brightness and Volume adjust keys function properly
-- Sleep works
-- Airplay (extensively tested)
+- Sleep
+- Airplay
 - Trackpoint AKA “Pointing Stick”
 - Filevault
 - Ethernet
@@ -42,6 +45,12 @@ To use DEBUG AirportBrcmFixup.kext add these boot-args:
 **Not Working 100%**
 
 SD card reader – C State is broken in my case. Must Disable SD card reader so CPU can hit C states C6, C7, and C8. This is a known problem that is being worked on. SD card reader works otherwise.
+
+**Mac OS Sequoia Issues**
+
+- Migration Assistant is broken under Sequoia, causes loop where it says Migration Assistant completed the migration click to restart. Seems to be known issue.
+- When using the BCM94360NG there are SEVERE performance issues when using an older version of OCLP (OpenCore Legacy Patcher). Works properly when using OCLP version 2.5.0 Nightly.
+
 
 **Not Tested:**
 
